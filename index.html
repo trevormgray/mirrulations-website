@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mirrulations</title>
+    <script>
+        const server = "https://h6aj1c0336.execute-api.us-east-1.amazonaws.com/prod";
+
+        async function getHello() {
+            try {
+                const response = await fetch(`${server}/get_hello_world`);
+                const data = await response.json();
+                console.log(data);
+
+                const hello = document.createElement("h1");
+                hello.textContent = data.queryString;
+                document.body.appendChild(hello);
+                
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        window.onload = getHello;
+    </script>
 </head>
 <body>
-    <h1>Hello, World!</h1>
 </body>
 </html>

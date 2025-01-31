@@ -23,12 +23,12 @@ async function getHello() {
 /**
  * Gets data for and changes front end for search.
  */
-function search() {
-    const data = getSearchData()
+async function search() {
+    const data = await getSearchData()
     const results_box = document.getElementById("results")
     results_box.innerHTML = '' // clears the results box from previous searches
 
-    for (element of data) {
+    for (const element of data) {
         const result = document.createElement("p")
         result.innerText = element.name
         results_box.appendChild(result)
@@ -36,12 +36,11 @@ function search() {
 }
 
 /**
- * Gets data for search from API. Currently a placeholder.
+ * Gets data for search from API.
  * @returns a list of objects representing search results.
  */
-function getSearchData() {
-    return [
-        { name: "test1" },
-        { name: "test2" },
-    ]
+async function getSearchData() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users')
+    const data = await response.json()
+    return data.map(user => ({ name: user.name }))
 }

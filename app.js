@@ -51,7 +51,7 @@ async function getSearchData(name) {
     const ApiGatewayLink = `https://1jeopqs6y0.execute-api.us-east-1.amazonaws.com/Dev/dummy?name=${name}`;
     const response = await fetch(ApiGatewayLink, {
         headers: {
-            'x-api-key': '37McbYZe168b15DGrJPzt4zy9V7gZkmU9JfZr07u',
+            'x-api-key': 'API KEY HERE',
             'Content-Type': 'application/json'
         }
     });

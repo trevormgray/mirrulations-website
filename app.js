@@ -24,23 +24,41 @@ async function getHello() {
  * Gets data for and changes front end for search.
  */
 async function search() {
-    const data = await getSearchData()
-    const results_box = document.getElementById("results")
-    results_box.innerHTML = '' // clears the results box from previous searches
+    const name = document.getElementById("search_input").value;
+    const data = await getSearchData(name);
+    const results_box = document.getElementById("results");
+    results_box.innerHTML = ''; // clears the results box from previous searches
 
-    for (const element of data) {
-        const result = document.createElement("p")
-        result.innerText = element.name
-        results_box.appendChild(result)
+    if (Array.isArray(data)) {
+        for (const element of data) {
+            const result = document.createElement("p");
+            result.innerText = element.name;
+            results_box.appendChild(result);
+        }
+    } else {
+        const result = document.createElement("p");
+        result.innerText = data.name || "No results found";
+        results_box.appendChild(result);
     }
 }
 
 /**
- * Gets data for search from API.
+ * Gets data for search from AWS API Gateway.
+ * @param {string} name - The name to search for.
  * @returns a list of objects representing search results.
  */
-async function getSearchData() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users')
-    const data = await response.json()
-    return data.map(user => ({ name: user.name }))
+async function getSearchData(name) {
+    const ApiGatewayLink = `https://1jeopqs6y0.execute-api.us-east-1.amazonaws.com/Dev/dummy?name=${name}`;
+    const response = await fetch(ApiGatewayLink, {
+        headers: {
+            'x-api-key': '37McbYZe168b15DGrJPzt4zy9V7gZkmU9JfZr07u',
+            'Content-Type': 'application/json'
+        }
+    });
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data); // Log the data to see its structure
+    return data;
 }

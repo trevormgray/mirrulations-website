@@ -1,0 +1,1 @@
+export const API_GATEWAY_LINK = 'https://1jeopqs6y0.execute-api.us-east-1.amazonaws.com/Dev/dummy';

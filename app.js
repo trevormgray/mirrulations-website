@@ -1,24 +1,8 @@
-const server = "https://h6aj1c0336.execute-api.us-east-1.amazonaws.com/prod";
+import { API_GATEWAY_LINK } from './config.js';
 
-getHello()
-document.getElementById("search_button").addEventListener("click", search)
+const server = API_GATEWAY_LINK;
 
-async function getHello() {
-    try {
-        const response = await fetch(`${server}/get_hello_world`);
-        const data = await response.json();
-        console.log(data);
-    
-        // commented out so that it doesn't add to the html.
-        
-        // const hello = document.createElement("h1");
-        // hello.textContent = data.queryString;
-        // document.body.appendChild(hello);
-        
-    } catch (error) {
-        console.error(error);
-    }
-}
+document.getElementById("search_button").addEventListener("click", search);
 
 /**
  * Gets data for and changes front end for search.

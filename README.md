@@ -32,14 +32,6 @@ This repository contains the source code for the Mirrulations Project website. T
     - Click on the branch that you want to redeploy
     - In the top right corner, click _**↺ Redeploy this version**_
 
-### <ins>**Setup Your .env File:**</ins>
-- In VSCode, right click in your file explorer and select _**New File**_
-- Name the file _**.env**_
-- In your .env file put `VITE_API_GATEWAY_URL=` (followed by your AWS API Gateway Link)
-- Next make a .gitignore file
-    - In VSCode, right click in your file explorer and select _**New File**_
-    - Name the file _**.gitignore**_
-    - In your .gitignore file put _**.env**_
 
 ### <ins>How To create a Github actions workflow:</ins>
 

@@ -1,33 +1,16 @@
-const server = "https://h6aj1c0336.execute-api.us-east-1.amazonaws.com/prod";
+// Retrieve the API Gateway URL from environment variables (AWS Amplify or local .env)
+const API_GATEWAY_URL = process.env.API_GATEWAY_URL;
 
-getHello()
-document.getElementById("search_button").addEventListener("click", search)
-
-async function getHello() {
-    try {
-        const response = await fetch(`${server}/get_hello_world`);
-        const data = await response.json();
-        console.log(data);
-    
-        // commented out so that it doesn't add to the html.
-        
-        // const hello = document.createElement("h1");
-        // hello.textContent = data.queryString;
-        // document.body.appendChild(hello);
-        
-    } catch (error) {
-        console.error(error);
-    }
-}
+document.getElementById("search_button").addEventListener("click", search);
 
 /**
- * Gets data for and changes front end for search.
+ * Gets data for and updates the front end based on search.
  */
 async function search() {
     const name = document.getElementById("search_input").value;
     const data = await getSearchData(name);
     const results_box = document.getElementById("results");
-    results_box.innerHTML = ''; // clears the results box from previous searches
+    results_box.innerHTML = ''; // Clears the results box from previous searches
 
     // Display all data from the API
     for (const key in data) {
@@ -41,21 +24,24 @@ async function search() {
 }
 
 /**
- * Gets data for search from AWS API Gateway.
+ * Fetches data from AWS API Gateway.
  * @param {string} name - The name to search for.
- * @returns an object representing search results.
+ * @returns {Object} - The search results.
  */
 async function getSearchData(name) {
-    const ApiGatewayLink = `https://1jeopqs6y0.execute-api.us-east-1.amazonaws.com/Dev/dummy?name=${name}`;
-    const response = await fetch(ApiGatewayLink, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
+    if (!API_GATEWAY_URL) {
+        throw new Error("API Gateway URL is not set. Check your environment variables.");
+    }
+
+    const response = await fetch(`${API_GATEWAY_URL}?name=${name}`, {
+        headers: { 'Content-Type': 'application/json' }
     });
+
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
+
     const data = await response.json();
-    console.log(data); // Log the data to see its structure
+    console.log(data); // Log the data to debug its structure
     return data;
 }

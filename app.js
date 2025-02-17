@@ -1,5 +1,5 @@
 // Retrieve the API Gateway URL from environment variables (AWS Amplify or local .env)
-const API_GATEWAY_URL = import.meta.env.VITE_API_GATEWAY_URL;
+const API_GATEWAY_URL = GATEWAY_API_URL;
 
 document.getElementById("search_button").addEventListener("click", search);
 

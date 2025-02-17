@@ -23,7 +23,7 @@ This repository contains the source code for the Mirrulations Project website. T
 - Click on _**Environment variables**_
 - On the top right, there should be a button that says, _**Manage Variables**_. Click it
 - If there is already another environment variable, click _**+ Add new**_ at the bottom at the page
-- In the box underneath Variable, put `VITE_API_GATEWAY_URL`
+- In the box underneath Variable, put `GATEWAY_API_URL`
 - Then, in the box underneath Value, put your `AWS API Gateway Link`
 - Click _**Save**_
 - Go back to your deployment and redeploy your application.
@@ -32,9 +32,9 @@ This repository contains the source code for the Mirrulations Project website. T
     - Click on the branch that you want to redeploy
     - In the top right corner, click _**↺ Redeploy this version**_
 
-### <ins>**How To Install dotenv and Vite Enviroments**</ins>
-1. In the terminal, type: `npm install dotenv vite`
-2. Create a file named `vite.config.js`
+### <ins>**How To Install dotenv and Vite Enviroments For Local Use**</ins>
+1. In the terminal, type: `npm install dotenv vite`.
+2. Create a file named `vite.config.js`.
     - Right click on your root directory
     - Click _**New File**_
     - Name it _**vite.config.js**_
@@ -76,7 +76,13 @@ export default defineConfig(({ mode }) => {
   }
 }
 ```
-5. To run locally type `npm run dev`
+5. In _**app.js**_ replace line 2 with `const API_GATEWAY_URL = import.meta.env.GATEWAY_API_URL;`.
+6. Make a _**.env**_ file:
+    - Right click in your root directory.
+    - Name it `.env`.
+    - Inside put `GATEWAY_API_URL=(Your API GATEWAY LINK HERE)`.
+7. To run locally type `npm run dev`
+8. Start Live Server at port 5500.
 
 ### <ins>How To create a Github actions workflow:</ins>
 

@@ -4,7 +4,7 @@ const API_GATEWAY_URL = import.meta.env.VITE_API_GATEWAY_URL;
 document.getElementById("search_button").addEventListener("click", search);
 
 /**
- * Gets data for and updates the front end based on search.
+ * Gets data for and updastes the front end based on search.
  */
 async function search() {
     const name = document.getElementById("search_input").value;

@@ -32,6 +32,51 @@ This repository contains the source code for the Mirrulations Project website. T
     - Click on the branch that you want to redeploy
     - In the top right corner, click _**↺ Redeploy this version**_
 
+### <ins>**How To Install dotenv and Vite Enviroments**</ins>
+1. In the terminal, type: `npm install dotenv vite`
+2. Create a file named `vite.config.js`
+    - Right click on your root directory
+    - Click _**New File**_
+    - Name it _**vite.config.js**_
+3. Inside your `vite.config.js` file put:
+``` import { defineConfig, loadEnv } from 'vite';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+export default defineConfig(({ mode }) => {
+    const env = loadEnv(mode, process.cwd());
+
+    return {
+        server: {
+            host: '127.0.0.1',
+            port: 5500
+        },
+        define: {
+            'process.env': env
+        }
+    };
+});
+```
+4. Inside the _**package.json**_ file put:
+```
+{
+  "name": "<Add your project name here>",
+  "version": "1.0.0",
+  "description": "<Add your project description here>",
+  "main": "<Add your entry point here>",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vite": "^6.1.0",
+    "dotenv": "^16.4.7"
+  }
+}
+```
+5. To run locally type `npm run dev`
 
 ### <ins>How To create a Github actions workflow:</ins>
 

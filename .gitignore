@@ -1,35 +1,21 @@
-# Node.js dependencies
+# Node.js dependencies (installed automatically in Amplify)
 node_modules/
 
-# Vite build output
+# Build output (Amplify generates this during deployment)
 dist/
 
-# Local environment variables
+# Local environment variables (Amplify injects env variables)
 .env
-package-lock.json
-package.json
-vite.config.js
 
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# OS-specific files
+# Cache files (improve local performance but not needed in Git)
+.vite/
+.vscode/
 .DS_Store
 Thumbs.db
 
-# IDE-specific files
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# AWS Amplify local config (Amplify manages this remotely)
+amplify/.config/local-*
 
-# Temporary files
-tmp/
-temp/
+# Optional: Lockfiles (keep only the one your package manager uses)
+yarn.lock
+pnpm-lock.yaml

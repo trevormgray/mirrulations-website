@@ -1,10 +1,12 @@
-// Retrieve the API Gateway URL from environment variables (AWS Amplify or local .env)
-const API_GATEWAY_URL = GATEWAY_API_URL;
+let API_GATEWAY_URL = import.meta.env?.VITE_GATEWAY_API_URL || window.GATEWAY_API_URL;
+if (!API_GATEWAY_URL) {
+    console.error("API Gateway URL is not set. Check your environment variables.");
+}
 
 document.getElementById("search_button").addEventListener("click", search);
 
 /**
- * Gets data for and updastes the front end based on search.
+ * Gets data for and updates the front end based on search.
  */
 async function search() {
     const name = document.getElementById("search_input").value;

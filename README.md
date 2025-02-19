@@ -33,56 +33,53 @@ This repository contains the source code for the Mirrulations Project website. T
     - In the top right corner, click _**↺ Redeploy this version**_
 
 ### <ins>**How To Install dotenv and Vite Enviroments For Local Use**</ins>
-1. In the terminal, type: `npm install dotenv vite`.
+1. In the terminal, type: `npm install vite`.
 2. Create a file named `vite.config.js`.
     - Right click on your root directory
     - Click _**New File**_
     - Name it _**vite.config.js**_
 3. Inside your `vite.config.js` file put:
 ``` import { defineConfig, loadEnv } from 'vite';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export default defineConfig(({ mode }) => {
-    const env = loadEnv(mode, process.cwd());
+    const env = loadEnv(mode, process.cwd(), 'VITE_');
 
-    return {
+    return defineConfig({
         server: {
             host: '127.0.0.1',
             port: 5500
         },
         define: {
-            'process.env': env
+            'import.meta.env': {
+                ...env, // Spread all VITE_ variables
+            }
         }
-    };
+    });
 });
 ```
 4. Inside the _**package.json**_ file put:
 ```
 {
-  "name": "<Add your project name here>",
+  "name": "mirrulations-website",
   "version": "1.0.0",
-  "description": "<Add your project description here>",
-  "main": "<Add your entry point here>",
+  "description": "Website repo for Mirrulations",
+  "main": "app.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
-    "vite": "^6.1.0",
-    "dotenv": "^16.4.7"
+    "vite": "^6.1.0"
   }
 }
 ```
-5. In _**app.js**_ replace line 2 with `const API_GATEWAY_URL = import.meta.env.GATEWAY_API_URL;`.
-6. Make a _**.env**_ file:
+5. Make a _**.env**_ file:
     - Right click in your root directory.
     - Name it `.env`.
-    - Inside put `GATEWAY_API_URL=(Your API GATEWAY LINK HERE)`.
-7. To run locally type `npm run dev`
-8. Start Live Server at port 5500.
+    - Inside put `VITE_GATEWAY_API_URL=(Your API GATEWAY LINK HERE)`.
+6. To run locally type `npm run dev`
+7. Start Live Server at port 5500.
 
 ### <ins>How To create a Github actions workflow:</ins>
 

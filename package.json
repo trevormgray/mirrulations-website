@@ -1,0 +1,14 @@
+{
+  "name": "mirrulations-website",
+  "version": "1.0.0",
+  "description": "Website repo for Mirrulations",
+  "main": "app.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vite": "^6.1.0"
+  }
+}

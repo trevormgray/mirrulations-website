@@ -1,9 +1,11 @@
 let API_GATEWAY_URL;
 
 if (import.meta.env && import.meta.env.VITE_GATEWAY_API_URL) {
-    API_GATEWAY_URL = import.meta.env.VITE_GATEWAY_API_URL; // Vite (Local)
-} else if (typeof GATEWAY_API_URL !== 'undefined') {
-    API_GATEWAY_URL = GATEWAY_API_URL; // AWS Amplify (should be defined)
+    // Running locally with Vite
+    API_GATEWAY_URL = import.meta.env.VITE_GATEWAY_API_URL;
+} else if (typeof process.env.GATEWAY_API_URL !== 'undefined') {
+    // Running on AWS Amplify, using environment variables directly
+    API_GATEWAY_URL = process.env.GATEWAY_API_URL;
 } else {
     console.error("API Gateway URL is not set. Check your environment variables.");
 }

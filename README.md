@@ -7,7 +7,7 @@ This repository contains the source code for the Mirrulations Project website. T
 1. On [AWS](https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1#) search for _**AWS Amplify**_.
 2. When you select AWS Amplify, you will be brought to the [main page](https://us-east-1.console.aws.amazon.com/amplify). Click on _**Deploy an app**_.
 3. Under _**Deploy your app**_, select _**GitHub**_.
-    - Click _**Next**_
+    - Click _**Next**_.
 4. There will be a window that pops up where you have to Authorize GitHub to work with Amplify. _**Allow it**_, and then you should be brought to the next screen.
 5. In the _**Select a repository**_ box, find your repository. If you cannot find your repository, click on the _**Update GitHub permissions**_. If you are working in a different GitHub Organization you will have to allow Authorization to that Organization.
 6. You will be brought to App Settings. Hit _**Next**_.
@@ -19,27 +19,28 @@ This repository contains the source code for the Mirrulations Project website. T
 ### <ins>**How To Get API Gateway Link Running On Own Device:**<ins>
 - Log on to AWS and go to the [AWS Amplify console](https://us-east-1.console.aws.amazon.com/amplify/apps).
 - Click on your app.
-- On the sidebar on the left, click the down arrow on the right side on _**Hosting**_
-- Click on _**Environment variables**_
-- On the top right, there should be a button that says, _**Manage Variables**_. Click it
-- If there is already another environment variable, click _**+ Add new**_ at the bottom at the page
-- In the box underneath Variable, put `GATEWAY_API_URL`
-- Then, in the box underneath Value, put your `AWS API Gateway Link`
-- Click _**Save**_
+- On the sidebar on the left, click the down arrow on the right side on _**Hosting**_.
+- Click on _**Environment variables**_.
+- On the top right, there should be a button that says, _**Manage Variables**_. Click it.
+- If there is already another environment variable, click _**+ Add new**_ at the bottom at the page.
+- In the box underneath Variable, put `GATEWAY_API_URL`.
+- Then, in the box underneath Value, put your `AWS API Gateway Link`.
+- Click _**Save**_.
 - Go back to your deployment and redeploy your application.
-    - In the top left, next to the amplify logo, click _**All apps**_
-    - Click on your app
-    - Click on the branch that you want to redeploy
-    - In the top right corner, click _**↺ Redeploy this version**_
+    - In the top left, next to the amplify logo, click _**All apps**_.
+    - Click on your app.
+    - Click on the branch that you want to redeploy.
+    - In the top right corner, click _**↺ Redeploy this version**_.
 
-### <ins>**How To Install dotenv and Vite Enviroments For Local Use**</ins>
+### <ins>**How To Install A Vite Enviroment For Local Use:**</ins>
 1. In the terminal, type: `npm install vite`.
-2. Create a file named `vite.config.js`.
-    - Right click on your root directory
-    - Click _**New File**_
-    - Name it _**vite.config.js**_
-3. Inside your `vite.config.js` file put:
-``` import { defineConfig, loadEnv } from 'vite';
+2. Create a file named _**vite.config.js**_.
+    - Right click on your root directory.
+    - Click _**New File**_.
+    - Name it `vite.config.js`.
+3. Inside your _**vite.config.js**_ file put:
+``` 
+import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), 'VITE_');
@@ -51,7 +52,7 @@ export default defineConfig(({ mode }) => {
         },
         define: {
             'import.meta.env': {
-                ...env, // Spread all VITE_ variables
+                ...env,
             }
         }
     });
@@ -78,10 +79,10 @@ export default defineConfig(({ mode }) => {
     - Right click in your root directory.
     - Name it `.env`.
     - Inside put `VITE_GATEWAY_API_URL=(Your API GATEWAY LINK HERE)`.
-6. To run locally type `npm run dev`
-7. Start Live Server at port 5500.
+6. To run locally type `npm run dev`.
+7. Start Live Server at port `5500`.
 
-### <ins>How To create a Github actions workflow:</ins>
+### <ins>How To Create a Github Actions Workflow:</ins>
 
 - It is important to note now and for the future that when making changes to github actions you must **push directly to upstream**.  This is typically bad practice but is required for github actions to work.  Need more information? Check out the  [Discord](https://discord.com/channels/1332506599020822620/1333536321515290646/1336078961943380030).
 - Create a directory ./github/workflows in the main repository. 

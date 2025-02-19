@@ -47,7 +47,7 @@ export default defineConfig(({ mode }) => {
 
     return defineConfig({
         server: {
-            host: '127.0.0.1',
+            host: 'localhost',
             port: 5500
         },
         define: {

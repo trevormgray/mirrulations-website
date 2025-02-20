@@ -8,7 +8,6 @@ dist/
 .env
 
 # Cache files (improve local performance but not needed in Git)
-.vite/
 .vscode/
 .DS_Store
 Thumbs.db

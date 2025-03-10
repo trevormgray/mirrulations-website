@@ -1,0 +1,56 @@
+body {margin:0}
+
+nav {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/assets/mr-bkg.png');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+nav .logo {
+    position: absolute;
+    top: 0;
+    left: 27px;
+    color: white;
+}
+
+#search_section {
+    position: absolute;
+    top: 350px;
+    width: 100vw;
+    padding: 20px;
+}
+
+#search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+#search_input {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-right: none;
+    font-size: 18px;
+    outline: none;
+    min-width: 0;
+}
+
+#search_button {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+    border-left: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+#search_button:hover {
+    background-color: #0056b3;
+}

@@ -3,7 +3,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "/styles/styles.css";
 import ResultsSection from "./results";
 
-const API_GATEWAY_URL = import.meta.env.VITE_GATEWAY_API_URL;
+let API_GATEWAY_URL;
+if (import.meta.env.VITE_GATEWAY_API_URL) {
+    API_GATEWAY_URL = import.meta.env.VITE_GATEWAY_API_URL;
+} else if (typeof GATEWAY_API_URL !== 'undefined') {
+    // Running on AWS Amplify
+    API_GATEWAY_URL = GATEWAY_API_URL;
+} else {
+    console.error("API Gateway URL is not set. Check your environment variables.");
+}
+
+if (!API_GATEWAY_URL) {
+    throw new Error("API Gateway URL is not set. Check your environment variables.");
+}
+
+console.log("API_GATEWAY_URL:", API_GATEWAY_URL);
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");

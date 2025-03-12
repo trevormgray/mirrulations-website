@@ -7,9 +7,6 @@ export default defineConfig(({ mode }) => {
     return {
         plugins: [react()],
         resolve: {
-            alias: {
-                react: require.resolve("react"),
-            },
         },
         server: {
             host: 'localhost',

@@ -36,12 +36,12 @@ const SearchPage = () => {
     setError(null);
   
     try {
-      const response = await fetch(`${API_GATEWAY_URL}`, {
+      const response = await fetch(`${API_GATEWAY_URL}?name=${searchTerm}`, {
         headers: { "Content-Type": "application/json" },
       });
   
       if (!response.ok) {
-        throw new console.log(`HTTP error! Status: ${response.status}`);
+        console.log(`HTTP error! Status: ${response.status}`);
       }
   
       const data = await response.json();

@@ -36,7 +36,7 @@ const SearchPage = () => {
     setError(null);
   
     try {
-      const response = await fetch(`${API_GATEWAY_URL}?name=${searchTerm}`, {
+      const response = await fetch(`${API_GATEWAY_URL}`, {
         headers: { "Content-Type": "application/json" },
       });
   

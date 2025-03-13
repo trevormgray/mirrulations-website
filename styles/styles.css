@@ -1,5 +1,5 @@
 .search-container {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/assets/mr-bkg.png") no-repeat center center fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/assets/Capitol_Building.jpg") no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -58,3 +58,10 @@
     font-size: 1.2rem;
   }
   
+  .footer  {
+    padding: 5px 10px;
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    border-radius: 5px;
+  }

@@ -9,7 +9,7 @@ const ResultsSection = ({ results }) => {
             {results.map((item, index) => (
               <li key={index} className="list-group-item">
                 <strong>{item.docketTitle}</strong>  
-                <p>ID: {item.docketId} - Matching Comments: {item.numComments} - Match Quality: {item.matchQuality} - Year: {item.yearId}</p>
+                <p>ID: {item.docketId} - Matching Comments: {item.numComments} - Year: {item.yearId}</p>
               </li>
             ))}
           </ul>

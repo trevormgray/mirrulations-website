@@ -9,7 +9,7 @@ const ResultsSection = ({ results }) => {
             {results.map((item, index) => (
               <li key={index} className="list-group-item">
                 <strong>{item.docketTitle}</strong>  
-                <p>ID: {item.docketID} - Matching Comments: {item.matching_comments}</p>
+                <p>ID: {item.docketID} - Matching Comments: {item.matching_comments}/{item.doc_count}</p>
               </li>
             ))}
           </ul>

@@ -62,7 +62,7 @@ const SearchPage = () => {
       const data = await response.json();
       console.log(data);
   
-      if (!data || (Array.isArray(data) && data.length === 0)) {
+      if (!data ||!data.dockets || (Array.isArray(data.dockets) && data.dockets.length === 0)) {
         throw new Error("No results found. Please try a different search term.");
       }
   

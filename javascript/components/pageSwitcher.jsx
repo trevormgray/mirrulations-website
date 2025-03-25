@@ -1,12 +1,11 @@
 import React from "react";
 
-const MAX_PAGE = 10
-
-const PageSwitcher = ({ current_page }) => {
+const PageSwitcher = ({ current_page, total_pages }) => {
     const PageButtons = () => {
+        current_page += 1 // this is because human's expect pages to be 1-indexed
         let middle_page = current_page
 
-        if (current_page >= MAX_PAGE) { middle_page = MAX_PAGE - 1 }
+        if (current_page >= total_pages) { middle_page = total_pages - 1 }
         if (current_page <= 1) { middle_page = 2}
         const page_numbers = [middle_page - 1, middle_page, middle_page+1]
 
@@ -24,8 +23,8 @@ const PageSwitcher = ({ current_page }) => {
         const arrowList = [
             {text: "<<", href: "#", disabledPage: 1},
             {text: "<", href: "#", disabledPage: 1}, 
-            {text: ">", href: "#", disabledPage: MAX_PAGE}, 
-            {text: ">>", href: "#", disabledPage: MAX_PAGE}, 
+            {text: ">", href: "#", disabledPage: total_pages}, 
+            {text: ">>", href: "#", disabledPage: total_pages}, 
         ]
 
         const arrowItemList = arrowList.map((arrow) => {

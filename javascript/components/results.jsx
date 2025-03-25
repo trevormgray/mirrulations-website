@@ -15,9 +15,9 @@ const ResultsSection = ({ results }) => {
                 </li>
               ))}
             </ul>
-            <PageSwitcher/>
           </div>
         )}
+        <PageSwitcher current_page={4}/>
       </div>
     </section>
   );

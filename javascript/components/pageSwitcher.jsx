@@ -10,7 +10,8 @@ const PageSwitcher = ({ current_page }) => {
         if (current_page <= 1) { middle_page = 2}
         const page_numbers = [middle_page - 1, middle_page, middle_page+1]
 
-        return page_numbers.map((number) => {
+
+        const pageItemList =  page_numbers.map((number) => {
             return (
                 <li className="page-item" key={number}>
                     <a className={number === current_page ? "page-link disabled": "page-link"} href={"#"}>
@@ -19,6 +20,25 @@ const PageSwitcher = ({ current_page }) => {
                 </li> 
             )
         })
+
+        const arrowList = [
+            {text: "<<", href: "#", disabledPage: 1},
+            {text: "<", href: "#", disabledPage: 1}, 
+            {text: ">", href: "#", disabledPage: MAX_PAGE}, 
+            {text: ">>", href: "#", disabledPage: MAX_PAGE}, 
+        ]
+
+        const arrowItemList = arrowList.map((arrow) => {
+            return (
+                <li className="page-item" key={arrow.text}>
+                    <a className={arrow.disabledPage === current_page ? "page-link disabled": "page-link"} href={arrow.href}>
+                        {arrow.text}
+                    </a>
+                </li> 
+            )
+        })
+        
+        return [...arrowItemList.slice(0, 2), ...pageItemList, ...arrowItemList.slice(2)]
     }
 
     return (

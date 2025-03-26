@@ -28,7 +28,7 @@ const SearchPage = () => {
       const query_params = new URLSearchParams()
       query_params.append("searchTerm", searchTerm)
       query_params.append("pageNumber", 0)
-      query_params.append("refreshResult", true)
+      query_params.append("refreshResults", true)
       query_params.append("sortParams", JSON.stringify(
         {
           "desc": true,
@@ -37,10 +37,9 @@ const SearchPage = () => {
       ))
       query_params.append("filterParams", JSON.stringify(
         {
-          "agencies": ["NSA", "DOJ", "DOD"],
           "dateRange": {
-              "start": "2000-01-01 00:00:00.000 -0400",
-              "end": "2025-03-18 00:00:00.000 -0400"
+              "start": "2000-01-01 00:00:00.000-0400",
+              "end": "2025-03-18 00:00:00.000-0400"
           },
           "docketType": "Rulemaking"
         }

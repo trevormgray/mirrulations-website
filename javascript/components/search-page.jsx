@@ -98,7 +98,7 @@ const SearchPage = () => {
   return (
     <div className="search-container p-0">
         <h1 className="logo">Mirrulations</h1>
-        <button className="btn btn-secondary position-absolute top-0 end-0 m-3" onClick={handleLogout}>
+        <button className="btn btn-primary position-absolute top-0 end-0 m-3" onClick={handleLogout}>
           Logout
         </button>
       <section className="search-section">

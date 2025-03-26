@@ -25,9 +25,34 @@ const SearchPage = () => {
     setError(null);
   
     try {
-      const response = await fetch(`${API_GATEWAY_URL}?name=${searchTerm}`, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const query_params = new URLSearchParams()
+      query_params.append("searchTerm", searchTerm)
+      query_params.append("pageNumber", 0)
+      query_params.append("refreshResults", true)
+      query_params.append("sortParams", JSON.stringify(
+        {
+          "desc": true,
+          "sortType": "relevance"
+        }
+      ))
+      query_params.append("filterParams", JSON.stringify(
+        {
+          "dateRange": {
+              "start": "2000-01-01 00:00:00.000-0400",
+              "end": "2025-03-18 00:00:00.000-0400"
+          },
+          "docketType": "Rulemaking"
+        }
+      ))
+
+      const url = `${API_GATEWAY_URL}?${query_params.toString()}`
+      
+      const headers = {
+        "Session-Id": "test",
+        "Content-Type": "application/json"
+      }
+
+      const response = await fetch(url, { headers });
   
       if (!response.ok) {
         console.log(`HTTP error! Status: ${response.status}`);
@@ -36,7 +61,7 @@ const SearchPage = () => {
       const data = await response.json();
       console.log(data);
   
-      if (!data || (Array.isArray(data) && data.length === 0)) {
+      if (!data ||!data.dockets || (Array.isArray(data.dockets) && data.dockets.length === 0)) {
         throw new Error("No results found. Please try a different search term.");
       }
   

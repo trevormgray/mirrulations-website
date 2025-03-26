@@ -88,8 +88,7 @@ const Authentication = () => {
                             placeholder="Username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            required
-                            autoComplete="username"
+                            required                        
                         />
                     </div>
     
@@ -104,7 +103,6 @@ const Authentication = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            autoComplete="current-password"
                         />
                     </div>
     

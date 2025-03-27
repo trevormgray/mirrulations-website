@@ -13,6 +13,15 @@ const SearchPage = () => {
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+    if (!isAuthenticated) {
+      navigate("/auth");
+    }
+  }, [navigate]);
 
   const handleSearch = async () => {
     if (!searchTerm.trim()) {
@@ -79,11 +88,17 @@ const SearchPage = () => {
       handleSearch();
     }
   };
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("idToken");
+    setIsAuthenticated(false);
+    navigate("/auth");
+  };
   
   return (
     <div className="search-container p-0">
         <h1 className="logo">Mirrulations</h1>
-        <button className="btn btn-secondary position-absolute top-0 end-0 m-3">
+        <button className="btn btn-primary position-absolute top-0 end-0 m-3" onClick={handleLogout}>
           Logout
         </button>
       <section className="search-section">

@@ -25,7 +25,7 @@ const ResultsSection = ({ results }) => {
           <p>
             <strong>Docket ID:</strong> 
             <a href={`https://www.regulations.gov/docket/${docket.id}`} target="_blank" rel="noopener noreferrer">
-              {docket.id}
+               {docket.id}
             </a>
           </p>
           <p><strong>Matching Comments:</strong> {docket.comments.match}/{docket.comments.total}</p>

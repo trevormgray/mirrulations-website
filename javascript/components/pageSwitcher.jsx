@@ -1,5 +1,7 @@
 import React from "react";
 
+const API_GATEWAY_URL = import.meta.env.VITE_GATEWAY_API_URL || GATEWAY_API_URL;
+
 const PageSwitcher = ({ current_page, total_pages, searchTerm }) => {
     const PageButtons = () => {
         current_page += 1 // this is because human's expect pages to be 1-indexed

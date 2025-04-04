@@ -32,7 +32,7 @@ const ResultsSection = ({ results, searchTerm }) => {
           <p><strong>Date Modified:</strong> {new Date(docket.dateModified).toLocaleDateString()}</p>
         </div>
       ))}
-      <PageSwitcher current_page={results.currentPage} total_pages={results.totalPages} searchTerm={searchTerm}/>
+      <PageSwitcher current_page={results.currentPage} total_pages={results.totalPages} searchTerm = {searchTerm} setResults={setResults}  setLoading={setLoading} setError={setError}/>
     </div>
   );
 };

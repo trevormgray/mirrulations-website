@@ -85,11 +85,11 @@ const PageSwitcher = ({ current_page, total_pages, searchTerm }) => {
         
 
         const arrowList = [
-            {text: "<<", href: updateSearch(1), disabledPage: 1},
-            {text: "<", href: updateSearch(current_page - 1), disabledPage: 1}, 
-            {text: ">", href: updateSearch(current_page + 1), disabledPage: total_pages}, 
-            {text: ">>", href: updateSearch(total_pages), disabledPage: total_pages}, 
-        ]
+            { text: "<<", onClick: () => updateSearch(1), disabledPage: 1 },
+            { text: "<", onClick: () =>  updateSearch(current_page - 1), disabledPage: 1 },
+            { text: ">", onClick: () => updateSearch(current_page + 1), disabledPage: total_pages },
+            { text: ">>", onClick: () => updateSearch(total_pages), disabledPage: total_pages },
+        ];
 
         const arrowItemList = arrowList.map((arrow) => {
             return (

@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "/styles/results.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const ResultsSection = ({ results }) => {
+const ResultsSection = ({ results, searchTerm }) => {
   const [isVisible, setIsVisible] = useState(false);
   const resultsRef = useRef(null);
 
@@ -32,7 +32,7 @@ const ResultsSection = ({ results }) => {
           <p><strong>Date Modified:</strong> {new Date(docket.dateModified).toLocaleDateString()}</p>
         </div>
       ))}
-      <PageSwitcher current_page={results.currentPage} total_pages={results.totalPages}/>
+      <PageSwitcher current_page={results.currentPage} total_pages={results.totalPages} searchTerm= {searchTerm}/>
     </div>
   );
 };

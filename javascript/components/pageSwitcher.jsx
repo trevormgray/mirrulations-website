@@ -85,21 +85,23 @@ const PageSwitcher = ({ current_page, total_pages, searchTerm }) => {
         
 
         const arrowList = [
-            { text: "<<", onClick: () => updateSearch(1), disabledPage: 1 },
-            { text: "<", onClick: () =>  updateSearch(current_page - 1), disabledPage: 1 },
-            { text: ">", onClick: () => updateSearch(current_page + 1), disabledPage: total_pages },
-            { text: ">>", onClick: () => updateSearch(total_pages), disabledPage: total_pages },
-        ];
+            {text: "<<", href: updateSearch(1), disabledPage: 1},
+            {text: "<", href: updateSearch(current_page - 1), disabledPage: 1}, 
+            {text: ">", href: updateSearch(current_page + 1), disabledPage: total_pages}, 
+            {text: ">>", href: updateSearch(total_pages), disabledPage: total_pages}, 
+        ]
 
-        const arrowItemList = arrowList.map((arrow) => {
-            return (
-                <li className="page-item" key={arrow.text}>
-                    <a className={arrow.disabledPage === current_page ? "page-link disabled": "page-link"} href={arrow.href}>
-                        {arrow.text}
-                    </a>
-                </li> 
-            )
-        })
+        const arrowItemList = arrowList.map((arrow) => (
+            <li className="page-item" key={arrow.text}>
+              <button
+                className={arrow.disabledPage === current_page ? "page-link disabled" : "page-link"}
+                onClick={arrow.onClick}
+                disabled={arrow.disabledPage === current_page}
+              >
+                {arrow.text}
+              </button>
+            </li>
+          ));
         
         return [...arrowItemList.slice(0, 2), ...pageItemList, ...arrowItemList.slice(2)]
     }

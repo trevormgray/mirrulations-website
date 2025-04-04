@@ -1,21 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "/styles/styles.css";
 import ResultsSection from "./results";
 
-let API_GATEWAY_URL;
-if (import.meta.env.VITE_GATEWAY_API_URL) {
-    API_GATEWAY_URL = import.meta.env.VITE_GATEWAY_API_URL;
-} else if (typeof GATEWAY_API_URL !== 'undefined') {
-    // Running on AWS Amplify
-    API_GATEWAY_URL = GATEWAY_API_URL;
-} else {
-    console.error("API Gateway URL is not set. Check your environment variables.");
-}
-
-if (!API_GATEWAY_URL) {
-    throw new Error("API Gateway URL is not set. Check your environment variables.");
-}
+const API_GATEWAY_URL = import.meta.env.VITE_GATEWAY_API_URL || GATEWAY_API_URL;
 
 console.log("API_GATEWAY_URL:", API_GATEWAY_URL);
 
@@ -24,6 +13,15 @@ const SearchPage = () => {
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+    if (!isAuthenticated) {
+      navigate("/auth");
+    }
+  }, [navigate]);
 
   const handleSearch = async () => {
     if (!searchTerm.trim()) {
@@ -36,9 +34,34 @@ const SearchPage = () => {
     setError(null);
   
     try {
-      const response = await fetch(`${API_GATEWAY_URL}?name=${searchTerm}`, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const query_params = new URLSearchParams()
+      query_params.append("searchTerm", searchTerm)
+      query_params.append("pageNumber", 0)
+      query_params.append("refreshResults", true)
+      query_params.append("sortParams", JSON.stringify(
+        {
+          "desc": true,
+          "sortType": "relevance"
+        }
+      ))
+      query_params.append("filterParams", JSON.stringify(
+        {
+          "dateRange": {
+              "start": "2000-01-01 00:00:00.000-0400",
+              "end": "2025-03-18 00:00:00.000-0400"
+          },
+          "docketType": "Rulemaking"
+        }
+      ))
+
+      const url = `${API_GATEWAY_URL}?${query_params.toString()}`
+      
+      const headers = {
+        "Session-Id": "test",
+        "Content-Type": "application/json"
+      }
+
+      const response = await fetch(url, { headers });
   
       if (!response.ok) {
         console.log(`HTTP error! Status: ${response.status}`);
@@ -47,7 +70,7 @@ const SearchPage = () => {
       const data = await response.json();
       console.log(data);
   
-      if (!data || (Array.isArray(data) && data.length === 0)) {
+      if (!data ||!data.dockets || (Array.isArray(data.dockets) && data.dockets.length === 0)) {
         throw new Error("No results found. Please try a different search term.");
       }
   
@@ -65,13 +88,19 @@ const SearchPage = () => {
       handleSearch();
     }
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("idToken");
+    setIsAuthenticated(false);
+    navigate("/auth");
+  };
+  
   return (
-    <div className="search-container">
-      <header>
+    <div className="search-container p-0">
         <h1 className="logo">Mirrulations</h1>
-      </header>
-
+        <button className="btn btn-primary position-absolute top-0 end-0 m-3" onClick={handleLogout}>
+          Logout
+        </button>
       <section className="search-section">
         <div id="search" className="d-flex justify-content-center">
           <input
@@ -96,10 +125,10 @@ const SearchPage = () => {
         <span> is licensed under </span><a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a>
       </p>
 
-      {loading && <p id="loading-section" className="text-center mt-3">Loading...</p>}
+      {loading && <p id="loading-section" className="text-center mt-3">Loading... (this is harder than it looks!) </p>}
       {error && <p id="error-loader" className="text-center mt-3">{error}</p>}
 
-      <ResultsSection results={results} error={error} />
+      {results && <ResultsSection results={results} />}
     </div>
   );
 };

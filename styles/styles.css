@@ -72,3 +72,25 @@ a.disabled {
   pointer-events: none;
   color: #ccc;
 }
+.result-item {
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease-in-out;
+  padding-bottom: 32px; /* Add more padding at the bottom to make room for the icon */
+  min-height: 80px; /* Ensure enough height for content plus icon */
+  position: relative; /* Ensure positioned elements work correctly */
+}
+
+.docket-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: transform 0.2s ease-in-out;
+}
+
+.docket-icon:hover {
+  transform: scale(1.2); /* Slight scale on hover for better user feedback */
+}

@@ -47,8 +47,15 @@ const ResultsSection = ({ results }) => {
             </a>
           </p>
           <p><strong>Matching Comments:</strong> {docket.comments.match}/{docket.comments.total}</p>
-<<<<<<< HEAD
-          <p><strong>Date Modified:</strong> {new Date(docket.dateModified).toLocaleDateString()}</p>
+          
+          {/* Timeline dates section - from the other branch */}
+          <p>
+            <strong>Date Modified:</strong> {docket.timelineDates ? new Date(docket.timelineDates.dateModified).toLocaleDateString() : new Date(docket.dateModified).toLocaleDateString()}
+            <strong>&emsp;Date Created:</strong> {docket.timelineDates && docket.timelineDates.dateCreated ? new Date(docket.timelineDates.dateCreated).toLocaleDateString() : "Unknown"}
+            <strong>&emsp;Date Effective:</strong> {docket.timelineDates && docket.timelineDates.dateEffective ? new Date(docket.timelineDates.dateEffective).toLocaleDateString() : "Unknown"}
+            <strong>&emsp;Date Closed:</strong> {docket.timelineDates && docket.timelineDates.dateClosed ? new Date(docket.timelineDates.dateClosed).toLocaleDateString() : "Unknown"}
+            <strong>&emsp;Date Comments Opened:</strong> {docket.timelineDates && docket.timelineDates.dateCommentsOpened ? new Date(docket.timelineDates.dateCommentsOpened).toLocaleDateString() : "Unknown"}
+          </p>
           
           {/* Icon in bottom right corner - only display if there's an icon for this docket type */}
           {getDocketIcon(docket) && (
@@ -59,15 +66,6 @@ const ResultsSection = ({ results }) => {
               title={getDocketIcon(docket).includes("hammer") ? "Final Rule" : "Proposed Rule"}
             />
           )}
-=======
-          <p>
-            <strong>Date Modified:</strong> {new Date(docket.timelineDates.dateModified).toLocaleDateString()}
-            <strong>&emsp;Date Created:</strong> { docket.timelineDates.dateCreated ? new Date(docket.timelineDates.dateCreated).toLocaleDateString() : "Unknown"}
-            <strong>&emsp;Date Effective:</strong> { docket.timelineDates.dateEffective ? new Date(docket.timelineDates.dateEffective).toLocaleDateString() : "Unknown" }
-            <strong>&emsp;Date Closed:</strong> { docket.timelineDates.dateClosed ? new Date(docket.timelineDates.dateClosed).toLocaleDateString() : "Unknown" }
-            <strong>&emsp;Date Comments Opened:</strong> { docket.timelineDates.dateCommentsOpened ? new Date(docket.timelineDates.dateCommentsOpened).toLocaleDateString() : "Unknown" }
-          </p>
->>>>>>> 0ae7a57611b42e851c03f404a9868a6e15fed6e4
         </div>
       ))}
       <PageSwitcher current_page={results.currentPage} total_pages={results.totalPages}/>

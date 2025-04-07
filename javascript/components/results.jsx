@@ -9,21 +9,11 @@ const ResultsSection = ({ results }) => {
 
   // Function to determine icon based on docket type
   const getDocketIcon = (docket) => {
-    // Check if the docket is rulemaking (based on docketType field)
-    const isRulemaking = docket.docketType === "Rulemaking" || docket.isRulemaking === true;
+    // Simply check if the docket is rulemaking or non-rulemaking
+    const isRulemaking = docket.docketType === "Rulemaking";
     
-    if (isRulemaking) {
-      // Check if it's a final rule - can be determined by title
-      const title = docket.title?.toLowerCase() || "";
-      const isFinalRule = title.includes("final rule") || 
-                         title.includes("amendment") ||
-                         title.includes("implementation");
-      
-      return isFinalRule ? "/assets/icons/hammer.png" : "/assets/icons/pencil.png";
-    } else {
-      // For non-rulemaking dockets, we won't show an icon
-      return null;
-    }
+    // Return hammer for rulemaking, pencil for non-rulemaking
+    return isRulemaking ? "/assets/icons/hammer.png" : "/assets/icons/pencil.png";
   };
 
   useEffect(() => {
@@ -57,15 +47,13 @@ const ResultsSection = ({ results }) => {
             <strong>&emsp;Date Comments Opened:</strong> {docket.timelineDates && docket.timelineDates.dateCommentsOpened ? new Date(docket.timelineDates.dateCommentsOpened).toLocaleDateString() : "Unknown"}
           </p>
           
-          {/* Icon in bottom right corner - only display if there's an icon for this docket type */}
-          {getDocketIcon(docket) && (
-            <img 
-              src={getDocketIcon(docket)} 
-              alt={docket.docketType === "Rulemaking" ? "Rule icon" : "Docket icon"} 
-              className="docket-icon"
-              title={getDocketIcon(docket).includes("hammer") ? "Final Rule" : "Proposed Rule"}
-            />
-          )}
+          {/* Icon in bottom right corner */}
+          <img 
+            src={getDocketIcon(docket)} 
+            alt={docket.docketType === "Rulemaking" ? "Rulemaking icon" : "Non-rulemaking icon"} 
+            className="docket-icon"
+            title={docket.docketType === "Rulemaking" ? "Rulemaking" : "Non-rulemaking"}
+          />
         </div>
       ))}
       <PageSwitcher current_page={results.currentPage} total_pages={results.totalPages}/>

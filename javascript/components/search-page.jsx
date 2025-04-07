@@ -144,6 +144,7 @@ const SearchPage = () => {
       </p>
 
       {loading && <LoadingMessage />}
+      {loading && <p id="loading-section" className="text-center mt-3">Loading... (this is harder than it looks!)</p>}
       {error && <p id="error-loader" className="text-center mt-3">{error}</p>}
       {results && <ResultsSection results={results} />}
     </div>

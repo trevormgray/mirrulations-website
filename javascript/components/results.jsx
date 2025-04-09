@@ -4,7 +4,7 @@ import "/styles/results.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import hammerIcon from "../../icons/hammer.png";
 import pencilIcon from "../../icons/pencil.png";
-
+import TimelineModal from "./timelineModal";
 
 const ResultsSection = ({ results }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,13 +39,9 @@ const ResultsSection = ({ results }) => {
               </p>
               <p><strong>Matching Comments:</strong> {docket.comments.match}/{docket.comments.total}</p>
               <p><strong>Matching Attachments:</strong> {docket.attachments ? `${docket.attachments.match}/${docket.attachments.total}` : "Unknown"}</p>
-              <p>
-                <strong>Date Modified:</strong> { docket.timelineDates && docket.timelineDates.dateModified ? new Date(docket.timelineDates.dateModified).toLocaleDateString() : docket.dateModified ? new Date(docket.dateModified).toLocaleDateString() : "Unknown"}
-                <strong>&emsp;Date Created:</strong> { docket.timelineDates && docket.timelineDates.dateCreated ? new Date(docket.timelineDates.dateCreated).toLocaleDateString() : "Unknown"}
-                <strong>&emsp;Date Effective:</strong> { docket.timelineDates && docket.timelineDates.dateEffective ? new Date(docket.timelineDates.dateEffective).toLocaleDateString() : "Unknown" }
-                <strong>&emsp;Date Closed:</strong> { docket.timelineDates && docket.timelineDates.dateClosed ? new Date(docket.timelineDates.dateClosed).toLocaleDateString() : "Unknown" }
-                <strong>&emsp;Date Comments Opened:</strong> { docket.timelineDates && docket.timelineDates.dateCommentsOpened ? new Date(docket.timelineDates.dateCommentsOpened).toLocaleDateString() : "Unknown" }
-              </p>
+              
+              {/* Use the new TimelineModal component instead of displaying dates directly */}
+              <TimelineModal key={docket.id} timelineDates={docket.timelineDates}/>
             </div>
             
             <div className="d-flex align-items-end">

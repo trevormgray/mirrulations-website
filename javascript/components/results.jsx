@@ -14,7 +14,7 @@ const ResultsSection = ({ results }) => {
     const isRulemaking = docket.docketType === "Rulemaking";
     
     // Return hammer for rulemaking, pencil for non-rulemaking
-    return isRulemaking ? "../../icons/hammer.png" : "../../icons/pencil.png";
+    return isRulemaking ? "../../assets/icons/hammer.png" : "../../assets/icons/pencil.png";
   };
 
   useEffect(() => {

@@ -29,6 +29,7 @@ const ResultsSection = ({ results }) => {
             </a>
           </p>
           <p><strong>Matching Comments:</strong> {docket.comments.match}/{docket.comments.total}</p>
+          <p><strong>Matching Attachments:</strong> {docket.attachments ? `${docket.attachments.match}/${docket.attachments.total}` : "Unknown"}</p>
           <p>
             <strong>Date Modified:</strong> { docket.timelineDates && docket.timelineDates.dateModified ? new Date(docket.timelineDates.dateModified).toLocaleDateString() : docket.dateModified ? new Date(docket.dateModified).toLocaleDateString() : "Unknown"}
             <strong>&emsp;Date Created:</strong> { docket.timelineDates && docket.timelineDates.dateCreated ? new Date(docket.timelineDates.dateCreated).toLocaleDateString() : "Unknown"}

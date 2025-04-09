@@ -2,16 +2,18 @@ import PageSwitcher from "./pageSwitcher";
 import React, { useEffect, useState, useRef } from "react";
 import "/styles/results.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import hammerIcon from './assets/icons/hammer.png';
-import pencilIcon from './assets/icons/pencil.png';
 
 const ResultsSection = ({ results }) => {
   const [isVisible, setIsVisible] = useState(false);
   const resultsRef = useRef(null);
 
+  // Function to determine icon based on docket type
   const getDocketIcon = (docket) => {
+    // Simply check if the docket is rulemaking or non-rulemaking
     const isRulemaking = docket.docketType === "Rulemaking";
-    return isRulemaking ? hammerIcon : pencilIcon;
+    
+    // Use absolute paths that reference files in the public directory
+    return isRulemaking ? "/icons/hammer.png" : "/icons/pencil.png";
   };
 
   useEffect(() => {

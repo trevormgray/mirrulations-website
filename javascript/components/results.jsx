@@ -13,7 +13,7 @@ const ResultsSection = ({ results }) => {
     const isRulemaking = docket.docketType === "Rulemaking";
     
     // Return hammer for rulemaking, pencil for non-rulemaking
-    return isRulemaking ? "../assets/icons/hammer.png" : "../assets/icons/pencil.png";
+    return isRulemaking ? "mirrulations-website/assets/icons/hammer.png" : "mirrulations-website/assets/icons/pencil.png";
   };
 
   useEffect(() => {

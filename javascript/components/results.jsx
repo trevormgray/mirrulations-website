@@ -2,6 +2,8 @@ import PageSwitcher from "./pageSwitcher";
 import React, { useEffect, useState, useRef } from "react";
 import "/styles/results.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import hammerIcon from "/assets/icons/hammer.png";
+import pencilIcon from "/assets/icons/pencil.png";
 
 const ResultsSection = ({ results }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,8 +15,8 @@ const ResultsSection = ({ results }) => {
     const isRulemaking = docket.docketType === "Rulemaking";
     
     // Return hammer for rulemaking, pencil for non-rulemaking
-    return isRulemaking ? "mirrulations-website/assets/icons/hammer.png" : "mirrulations-website/assets/icons/pencil.png";
-  };
+    return isRulemaking ? hammerIcon : pencilIcon;
+    };
 
   useEffect(() => {
     if (results.dockets.length > 0) {

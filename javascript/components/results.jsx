@@ -2,6 +2,7 @@ import PageSwitcher from "./pageSwitcher";
 import React, { useEffect, useState, useRef } from "react";
 import "/styles/results.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+// Import the images directly
 import hammerIcon from "/assets/icons/hammer.png";
 import pencilIcon from "/assets/icons/pencil.png";
 
@@ -14,9 +15,9 @@ const ResultsSection = ({ results }) => {
     // Simply check if the docket is rulemaking or non-rulemaking
     const isRulemaking = docket.docketType === "Rulemaking";
     
-    // Return hammer for rulemaking, pencil for non-rulemaking
+    // Use imported image variables
     return isRulemaking ? hammerIcon : pencilIcon;
-    };
+  };
 
   useEffect(() => {
     if (results.dockets.length > 0) {
@@ -51,7 +52,6 @@ const ResultsSection = ({ results }) => {
               </p>
             </div>
             
-            {/* Icon now placed using flexbox instead of absolute positioning */}
             <div className="d-flex align-items-end">
               <img 
                 src={getDocketIcon(docket)} 

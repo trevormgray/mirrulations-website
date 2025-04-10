@@ -39,7 +39,7 @@ const ResultsSection = ({ results, onPageChange }) => {
               </p>
               <p><strong>Matching Comments:</strong> {docket.comments.match}/{docket.comments.total}</p>
               <p><strong>Matching Attachments:</strong> {docket.attachments ? `${docket.attachments.match}/${docket.attachments.total}` : "Unknown"}</p>
-              
+              <p><strong>Summary:</strong> {docket.summary ? (docket.summary.length > 300 ? `${docket.summary.substring(0, 300)}...` : docket.summary) : "No summary available"}</p>
               {/* Use the new TimelineModal component instead of displaying dates directly */}
               <TimelineModal key={docket.id} timelineDates={docket.timelineDates}/>
             </div>

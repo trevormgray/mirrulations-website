@@ -6,8 +6,6 @@ import ResultsSection from "./results";
 
 const API_GATEWAY_URL = import.meta.env.VITE_GATEWAY_API_URL || GATEWAY_API_URL;
 
-console.log("API_GATEWAY_URL:", API_GATEWAY_URL);
-
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState(searchParams.get("q") || "");
@@ -103,7 +101,6 @@ const SearchPage = () => {
       setError("Please enter a search term.");
     }
     };
-    
   const handlePageChange = (newPageNumber) => {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Add this line
     setSearchParams({ q: searchTerm, page: newPageNumber + 1 }); // 1-based for URL

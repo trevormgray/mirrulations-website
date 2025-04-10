@@ -55,7 +55,7 @@ const ResultsSection = ({ results, onPageChange }) => {
           </div>
         </div>
       ))}
-      <PageSwitcher current_page={results.currentPage} total_pages={results.totalPages} onPageChange={(page) => onPageChange(page - 1)}/>
+      <PageSwitcher current_page={Number(results.currentPage) + 1} total_pages={results.totalPages} onPageChange={(page) => onPageChange(page - 1)}/>
     </div>
   );
 };

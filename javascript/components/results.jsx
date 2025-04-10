@@ -6,7 +6,7 @@ import hammerIcon from "../../icons/hammer.png";
 import pencilIcon from "../../icons/pencil.png";
 import TimelineModal from "./timelineModal";
 
-const ResultsSection = ({ results }) => {
+const ResultsSection = ({ results, onPageChange }) => {
   const [isVisible, setIsVisible] = useState(false);
   const resultsRef = useRef(null);
 
@@ -55,7 +55,7 @@ const ResultsSection = ({ results }) => {
           </div>
         </div>
       ))}
-      <PageSwitcher current_page={results.currentPage} total_pages={results.totalPages}/>
+      <PageSwitcher current_page={results.currentPage} total_pages={results.totalPages} onPageChange={(page) => onPageChange(page - 1)/>
     </div>
   );
 };

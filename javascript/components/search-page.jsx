@@ -29,6 +29,7 @@ const SearchPage = () => {
     const page = parseInt(searchParams.get("page")) || 1;
     
     if (q) {
+      console.log("[USEEFFECT] searchParams changed:", searchParams.toString());
       fetchResults(q, page - 1); // Convert to 0-based for API
     }
 }, [searchParams]);
@@ -39,9 +40,11 @@ const SearchPage = () => {
       setResults(null);
       return;
     }
+    console.log("[FETCH TRIGGERED] searchTerm:", term, "page:", pageNum);
 
     setLoading(true);
     setError(null);
+
 
     try {
       const query_params = new URLSearchParams();
@@ -79,7 +82,7 @@ const SearchPage = () => {
       if (!data || !data.dockets || (Array.isArray(data.dockets) && data.dockets.length === 0)) {
         throw new Error("No results found. Please try a different search term.");
       }
-
+      console.log("[SET RESULTS]", data);
       setResults(data);
       setSearchTerm(term);
       setPageNumber(pageNum);

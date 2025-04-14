@@ -96,7 +96,6 @@ const SearchPage = () => {
     const term = searchTerm.trim();
     if (term) {
       setSearchParams({ q: term, page: 1 });
-      fetchResults(term, 0); // 0-based for API
     } else {
       setError("Please enter a search term.");
     }
